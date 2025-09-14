@@ -1,0 +1,38 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+<div class="contain">
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center">แก้ไขข้อมูลธุรกรรมการเงิน</h2>
+            <form action="/update/{{ statement.id }}" method="POST">
+                <input type="hidden" name="id" value="{{ statement.id }}" name="id" />
+                <div class="from-group mt-3">
+                    <label for="date"> วันที่บันทึกข้อมูล </label>
+                    <input type="date" name="date" class="form-control" value="{{ statement.date }}">
+                </div>
+                 <div class="from-group mt-3">
+                    <label for="name"> ชื่อธุรกรรม </label>
+                    <input type="text" name="name" class="form-control" value="{{ statement.name }}">
+                </div>
+                 <div class="from-group mt-3">
+                    <label for="money"> จำนวนเงิน </label>
+                    <input type="number" name="number" class="form-control" value="{{ statement.number }}">
+                </div>
+                 <div class="from-group mt-3">
+                    <label for="catagory"> หมวดหมู่ </label>
+                    <select name="catagory" class="form-control">
+                        <option value="รายรับ" {% if statement.catagory == "รายรับ" %}selected{% endif %}>รายรับ</option>
+                        <option value="รายจ่าย" {% if statement.catagory == "รายจ่าย" %}selected{% endif %}>รายจ่าย</option>
+                    </select>
+                   
+                </div>
+                <input type="submit" value="แก้ไขรายการธุรกรรม" class="btn btn-warning mt-3">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
